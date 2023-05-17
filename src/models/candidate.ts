@@ -1,5 +1,4 @@
 import { sequelize } from "../database";
-
 import { DataTypes, Model } from "sequelize";
 
 interface CandidateInstance extends Model {

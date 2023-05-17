@@ -1,9 +1,11 @@
 import { Sequelize } from "sequelize";
 
-const databaseUrl = process.env.DATABASE_URL || "";
+const dbUrl = process.env.DATABASE_URL || "";
 
-export const sequelize = new Sequelize(databaseUrl, {
+const sequelize = new Sequelize(dbUrl, {
   define: {
     underscored: true,
   },
 });
+
+export { sequelize };
