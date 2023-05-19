@@ -31,7 +31,7 @@ export const companyController = {
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({
-          message: err.message,
+          message: "Não foi possivel cadastrar esta empresa",
         });
       }
     }
@@ -45,7 +45,7 @@ export const companyController = {
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({
-          message: err.message,
+          message: "Ocorreu um erro ao buscar empresa",
         });
       }
     }
@@ -65,11 +65,11 @@ export const companyController = {
         { where: { id }, returning: true }
       );
 
-      return res.status(201).json(companies[0]);
+      return res.status(200).json(companies[0]);
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({
-          message: err.message,
+          message: "Ocorreu um erro ao atualizar a empresa",
         });
       }
     }
@@ -83,7 +83,7 @@ export const companyController = {
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({
-          message: err.message,
+          message: 'Ocorreu um erro ao deletar empresa',
         });
       }
     }
