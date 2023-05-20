@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { candidatesController } from "./controllers/candidates-controller";
 import { companyController } from "./controllers/company-controller";
+import { JobsController } from "./controllers/jobs-controller";
+
 const router = Router();
 
 //Candidates
@@ -19,5 +21,7 @@ router.post("/companies", companyController.save);
 router.get("/companies/:id", companyController.show);
 router.delete("/companies/:id", companyController.delete);
 router.put("/companies/:id", companyController.update);
+
+router.get("/jobs", JobsController.index);
 
 export { router };

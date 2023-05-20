@@ -39,7 +39,7 @@ export const companyController = {
   show: async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-      const company = await Company.findByPk(id, { include: "jobsd" });
+      const company = await Company.findByPk(id, { include: "jobs" });
 
       return res.status(200).json(company);
     } catch (err) {
