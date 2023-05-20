@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { Company } from "../models/company";
+import { Company } from "../models";
 
 export const companyController = {
   index: async (req: Request, res: Response) => {
@@ -39,7 +39,7 @@ export const companyController = {
   show: async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-      const company = await Company.findByPk(id);
+      const company = await Company.findByPk(id, { include: "jobsd" });
 
       return res.status(200).json(company);
     } catch (err) {
@@ -83,7 +83,7 @@ export const companyController = {
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({
-          message: 'Ocorreu um erro ao deletar empresa',
+          message: "Ocorreu um erro ao deletar empresa",
         });
       }
     }
