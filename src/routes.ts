@@ -22,6 +22,15 @@ router.get("/companies/:id", companyController.show);
 router.delete("/companies/:id", companyController.delete);
 router.put("/companies/:id", companyController.update);
 
+//Jobs
 router.get("/jobs", JobsController.index);
+router.post("/jobs", JobsController.save);
+
+router.get("/jobs/:id", JobsController.show);
+router.put("/jobs/:id", JobsController.update);
+router.delete("/jobs/:id", JobsController.delete);
+
+router.post("/jobs/:id/addCandidate", JobsController.addCandidate);
+router.post("/jobs/:id/removeCandidate", JobsController.removeCandidate);
 
 export { router };
