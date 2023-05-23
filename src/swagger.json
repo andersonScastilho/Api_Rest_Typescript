@@ -145,6 +145,25 @@
           }
         }
       }
+    },
+    "/jobs": {
+      "get": {
+        "description": "Mostra todos os jobs",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResponseJob"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -193,6 +212,71 @@
             "type": "number",
             "description": "Id da empresa",
             "format": "integer"
+          }
+        }
+      },
+      "ResponseJob": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": "1"
+          },
+          "title": {
+            "type": "string",
+            "example": "Desenvolvedor frontend"
+          },
+          "description": {
+            "type": "string",
+            "example": "Requisitos: React, Javascript, html e css"
+          },
+          "limitDate": {
+            "type": "date"
+          },
+          "companyId": {
+            "type": "number",
+            "example": "1"
+          },
+          "createdAt": {
+            "type": "number",
+            "example": "2023-05-20T18:07:25.551Z"
+          },
+          "updatedAt": {
+            "type": "number",
+            "example": "2023-05-20T18:07:25.551Z"
+          },
+          "company": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": "1"
+              },
+              "name": {
+                "type": "string",
+                "example": "Nubank"
+              },
+              "bio": {
+                "type": "string",
+                "example": "Lorem ipsum"
+              },
+              "website": {
+                "type": "string",
+                "example": "onebitcode.com"
+              },
+              "email": {
+                "type": "string",
+                "example": "teste@gmail.com"
+              },
+              "createdAt": {
+                "type": "date",
+                "example": "2023-05-20T18:07:25.551Z"
+              },
+              "updatedAt": {
+                "type": "date",
+                "example": "2023-05-20T18:07:25.551Z"
+              }
+            }
           }
         }
       }
