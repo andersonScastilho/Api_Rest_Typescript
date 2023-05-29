@@ -31,6 +31,6 @@ router.put("/jobs/:id", JobsController.update);
 router.delete("/jobs/:id", JobsController.delete);
 
 router.post("/jobs/:id/addCandidate", JobsController.addCandidate);
-router.post("/jobs/:id/removeCandidate", JobsController.removeCandidate);
+router.delete("/jobs/:id/removeCandidate", JobsController.removeCandidate);
 
 export { router };

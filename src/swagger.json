@@ -9,9 +9,23 @@
     },
     "version": "1.0.0"
   },
+  "tags": [
+    {
+      "name": "Companies"
+    },
+    {
+      "name": "Jobs"
+    },
+    {
+      "name": "Candidates"
+    }
+  ],
   "paths": {
     "/companies": {
       "post": {
+        "tags": [
+          "Companies"
+        ],
         "description": "Adicionar uma empresa",
         "requestBody": {
           "description": "Dados nescessario para adicionar uma empresa",
@@ -40,6 +54,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Companies"
+        ],
         "description": "Empresas cadastradas",
         "responses": {
           "200": {
@@ -62,6 +79,9 @@
     },
     "/companies/{id}": {
       "get": {
+        "tags": [
+          "Companies"
+        ],
         "description": "Buscar uma empresa atravez do id",
         "parameters": [
           {
@@ -89,6 +109,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Companies"
+        ],
         "description": "Deletar uma empresa cadastrada",
         "parameters": [
           {
@@ -109,6 +132,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Companies"
+        ],
         "description": "Atualizar uma empresa",
         "parameters": [
           {
@@ -120,7 +146,7 @@
           }
         ],
         "requestBody": {
-          "description": "Dados nescessario para adicionar uma empresa",
+          "description": "Dados nescessario para atualizar uma empresa",
           "content": {
             "application/json": {
               "schema": {
@@ -146,8 +172,157 @@
         }
       }
     },
+    "/candidates": {
+      "get": {
+        "tags": [
+          "Candidates"
+        ],
+        "description": "Buscar candidatos",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCandidates"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel buscar candidatos"
+          }
+        }
+      },
+      "post": {
+        "description": "Cadastrar um candidato",
+        "tags": [
+          "Candidates"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCandidates"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Candidato cadastrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCandidates"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel cadastrar um candidato"
+          }
+        }
+      }
+    },
+    "/candidates/{id}": {
+      "get": {
+        "description": "Buscar um candidato atravez do id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "number",
+            "description": "Id do candidato",
+            "format": "integer",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Candidates"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCandidates"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel encontrar o candidato"
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletar um candidato",
+        "tags": [
+          "Candidates"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "id",
+            "type": "number",
+            "format": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Candidato deletado com sucesso"
+          },
+          "400": {
+            "description": "Não foi possivel deletar este candidato"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Candidates"
+        ],
+        "description": "Atualizar um candidato",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "id",
+            "type": "number",
+            "format": "integer"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCandidates"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCandidates"
+                },
+                "description": "Dados atualizado com sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel atualizar os dados do candidato"
+          }
+        }
+      }
+    },
     "/jobs": {
       "get": {
+        "tags": [
+          "Jobs"
+        ],
         "description": "Mostra todos os jobs",
         "responses": {
           "200": {
@@ -161,6 +336,215 @@
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "Adicionar um job",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestJob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Empresa cadastrada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCompany"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Não foi possivel cadastrar esta empresa"
+          }
+        }
+      }
+    },
+    "/jobs/{id}": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "Buscar um job atravez do id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do job",
+            "required": true,
+            "type": "number",
+            "format": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ocorreu um erro ao buscar empresa"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "Atualizar um job",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do job",
+            "type": "number",
+            "format": "integer"
+          }
+        ],
+        "requestBody": {
+          "description": "Dados nescessario para atualizar um job",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestJob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Job atualizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ocorreu uzm erro ao atualizar a empresa"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "Deletar um job cadastrada",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do job",
+            "type": "number",
+            "format": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Job deletado com sucesso"
+          },
+          "400": {
+            "description": "Ocorreu um erro ao deletar um job"
+          }
+        }
+      }
+    },
+    "/jobs/{id}/addCandidate": {
+      "post": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "Adicionar um candidato a um job",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do job",
+            "required": true,
+            "type": "number",
+            "format": "integer"
+          }
+        ],
+        "requestBody": {
+          "description": "Dados nescessario para adicionar um candidato a um job",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "candidateId": {
+                    "type": "number",
+                    "example": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Candidato adicionado com sucesso"
+          },
+          "400": {
+            "description": "Não foi possivel adicionar o candidato"
+          }
+        }
+      }
+    },
+    "/jobs/{id}/removeCandidate": {
+      "delete": {
+        "tags": [
+          "Jobs"
+        ],
+        "description": "Remover um candidato do job",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do candidato",
+            "required": true,
+            "type": "number",
+            "format": "integer"
+          }
+        ],
+        "requestBody": {
+          "description": "Dados nescessario para adicionar um candidato a um job",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "candidateId": {
+                    "type": "number",
+                    "example": 3
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Candidato removido com sucesso"
+          },
+          "400": {
+            "description": "Não foi possivel remover o candidato"
           }
         }
       }
@@ -215,6 +599,90 @@
           }
         }
       },
+      "ResponseCandidates": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "integer",
+            "example": 2
+          },
+          "name": {
+            "type": "string",
+            "example": "Anderson Leonardo"
+          },
+          "bio": {
+            "type": "string",
+            "example": "Desenvolvedor Backend"
+          },
+          "email": {
+            "type": "string",
+            "example": "andersonleoTeste@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "11975895237"
+          },
+          "openToWork": {
+            "type": "boolean",
+            "example": true
+          },
+          "createdAt": {
+            "type": "date",
+            "example": "2023-05-29T14:08:10.896Z"
+          },
+          "updatedAt": {
+            "type": "date",
+            "example": "2023-05-29T14:08:10.896Z"
+          }
+        }
+      },
+      "RequestCandidates": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Anderson Leonardo"
+          },
+          "bio": {
+            "type": "string",
+            "example": "Desenvolvedor Backend"
+          },
+          "email": {
+            "type": "string",
+            "example": "andersonleoTeste@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "11975895237"
+          },
+          "openToWork": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "RequestJob": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Desenvolvedor frontend"
+          },
+          "description": {
+            "type": "string",
+            "example": "Requisitos: React, Javascript, html e css"
+          },
+          "limitDate": {
+            "type": "date",
+            "example": "2023-05-20T18:07:25.551Z"
+          },
+          "companyId": {
+            "type": "number",
+            "example": "1"
+          }
+        }
+      },
       "ResponseJob": {
         "type": "object",
         "properties": {
@@ -231,18 +699,19 @@
             "example": "Requisitos: React, Javascript, html e css"
           },
           "limitDate": {
-            "type": "date"
+            "type": "date",
+            "example": "2023-05-20T18:07:25.551Z"
           },
           "companyId": {
             "type": "number",
             "example": "1"
           },
           "createdAt": {
-            "type": "number",
+            "type": "date",
             "example": "2023-05-20T18:07:25.551Z"
           },
           "updatedAt": {
-            "type": "number",
+            "type": "date",
             "example": "2023-05-20T18:07:25.551Z"
           },
           "company": {
