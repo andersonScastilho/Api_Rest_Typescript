@@ -4,8 +4,7 @@ Esta api foi desenvolvida a fins de estudos.
 
 # De que serve esta api ?
 
-Bom, basicamente ela simula um sitema de vagas de emprego.
+Basicamente ela simula um sitema de vagas de emprego, onde você cadastrar uma empresa, uma vaga e um candidato no sistema e associar uma vaga a uma empresa e um candidato a uma vaga.
 
-# Quais operção é possivel realizar com ela ?
 
 
